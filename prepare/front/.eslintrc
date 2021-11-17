@@ -30,6 +30,7 @@
       "object-curly-newline": "off",
       "linebreak-style": "off",
       "no-param-reassign": "off"
-    }
+    },
+    // "arrow-body-style": ["error", "always"]
   }
   

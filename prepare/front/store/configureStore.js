@@ -1,7 +1,7 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { createWrapper } from 'next-redux-wrapper';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { composeWithDevTools } from 'redux-devtools-extension';// 리덕스 액션 히스트로리를 쌓는 기능, 개발자도구 연동
 
 import reducer from '../reducers';
 import rootSaga from '../sagas';
@@ -20,6 +20,8 @@ const configureStore = (context) => {
   return store;
 };
 
-const wrapper = createWrapper(configureStore, { debug: process.env.NODE_ENV === 'development' });
+const wrapper = createWrapper(configureStore, {
+  debug: process.env.NODE_ENV === 'development',
+});
 
 export default wrapper;

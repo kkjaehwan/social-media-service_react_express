@@ -15,37 +15,38 @@ try {
   fs.mkdirSync('uploads');
 }
 
+// S3로 변경 해야 함
 const upload = multer({
   storage: multer.diskStorage({
     destination(req, file, done) {
       done(null, 'uploads');
     },
-    filename(req, file, done) { // 제로초.png
+    filename(req, file, done) { // sample.png
       const ext = path.extname(file.originalname); // 확장자 추출(.png)
-      const basename = path.basename(file.originalname, ext); // 제로초
-      done(null, basename + '_' + new Date().getTime() + ext); // 제로초15184712891.png
+      const basename = path.basename(file.originalname, ext); // sample
+      done(null, basename + '_' + new Date().getTime() + ext); // sample15184712891.png
     },
   }),
   limits: { fileSize: 20 * 1024 * 1024 }, // 20MB
 });
 router.post('/', isLoggedIn, upload.none(), async (req, res, next) => { // POST /post
   try {
-    //const hashtags = req.body.content.match(/#[^\s#]+/g);
+    const hashtags = req.body.content.match(/#[^\s#]+/g);
     const post = await Post.create({
       content: req.body.content,
       UserId: req.user.id,
     });
-    // if (hashtags) {
-    //   const result = await Promise.all(hashtags.map((tag) => Hashtag.findOrCreate({
-    //     where: { name: tag.slice(1).toLowerCase() },
-    //   }))); // [[노드, true], [리액트, true]]
-    //   await post.addHashtags(result.map((v) => v[0]));
-    // }
+    if (hashtags) {
+      const result = await Promise.all(hashtags.map((tag) => Hashtag.findOrCreate({
+        where: { name: tag.slice(1).toLowerCase() },
+      }))); // [[노드, true], [리액트, true]]
+      await post.addHashtags(result.map((v) => v[0]));
+    }
     if (req.body.image) {
-      if (Array.isArray(req.body.image)) { // 이미지를 여러 개 올리면 image: [제로초.png, 부기초.png]
+      if (Array.isArray(req.body.image)) { // 이미지를 여러 개 올리면 image: [test1.png, test2.png]
         const images = await Promise.all(req.body.image.map((image) => Image.create({ src: image })));
         await post.addImages(images);
-      } else { // 이미지를 하나만 올리면 image: 제로초.png
+      } else { // 이미지를 하나만 올리면 image: test1.png
         const image = await Image.create({ src: req.body.image });
         await post.addImages(image);
       }
@@ -76,9 +77,53 @@ router.post('/', isLoggedIn, upload.none(), async (req, res, next) => { // POST 
   }
 });
 
+// 한개: single, text : none, filed : 파일이 여러개
 router.post('/images', isLoggedIn, upload.array('image'), (req, res, next) => { // POST /post/images
   console.log(req.files);
   res.json(req.files.map((v) => v.filename));
+});
+
+router.get('/:postId', async (req, res, next) => { // GET /post/1
+  try {
+    const post = await Post.findOne({
+      where: { id: req.params.postId },
+    });
+    if (!post) {
+      return res.status(404).send('존재하지 않는 게시글입니다.');
+    }
+    const fullPost = await Post.findOne({
+      where: { id: post.id },
+      include: [{
+        model: Post,
+        as: 'Retweet',
+        include: [{
+          model: User,
+          attributes: ['id', 'nickname'],
+        }, {
+          model: Image,
+        }]
+      }, {
+        model: User,
+        attributes: ['id', 'nickname'],
+      }, {
+        model: User,
+        as: 'Likers',
+        attributes: ['id', 'nickname'],
+      }, {
+        model: Image,
+      }, {
+        model: Comment,
+        include: [{
+          model: User,
+          attributes: ['id', 'nickname'],
+        }],
+      }],
+    })
+    res.status(200).json(fullPost);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
 });
 
 router.post('/:postId/retweet', isLoggedIn, async (req, res, next) => { // POST /post/1/retweet
@@ -125,6 +170,10 @@ router.post('/:postId/retweet', isLoggedIn, async (req, res, next) => { // POST 
       }, {
         model: User,
         attributes: ['id', 'nickname'],
+      }, {
+        model: User, // 좋아요 누른 사람
+        as: 'Likers',
+        attributes: ['id'],
       }, {
         model: Image,
       }, {

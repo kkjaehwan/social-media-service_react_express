@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Slick from 'react-slick';
 import { Overlay, Header, CloseBtn, SlickWrapper, ImgWrapper, Indicator, Global } from './styles';
@@ -6,6 +6,19 @@ import { Overlay, Header, CloseBtn, SlickWrapper, ImgWrapper, Indicator, Global 
 const ImagesZoom = ({ images, onClose }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  // esc 눌렀을 때 화면 닫힘.
+  useEffect(
+    () => {
+      const handleKeyPress = (e) => e.keyCode === 27 && onClose();
+
+      window.addEventListener('keyup', handleKeyPress);
+
+      return () => {
+        window.removeEventListener('keyup', handleKeyPress);
+      };
+    },
+    [],
+  );
   return (
     <Overlay>
       <Global />
@@ -25,7 +38,7 @@ const ImagesZoom = ({ images, onClose }) => {
           >
             {images.map((v) => (
               <ImgWrapper key={v.src}>
-                <img src={v.src} alt={v.src} />
+                <img src={`http://localhost:3065/${v.src}`} alt={v.src} />
               </ImgWrapper>
             ))}
           </Slick>
