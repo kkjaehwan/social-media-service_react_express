@@ -43,7 +43,6 @@ const AppLayout = ({ children }) => {
         <Menu.Item key="home" icon={<HomeFilled />}><Link href="/"><a>Node Birds</a></Link></Menu.Item>
         {me ? <Menu.Item key="profile"><Link href="/profile"><a>Profile</a></Link></Menu.Item> : <></>}
         <Menu.Item key="conract"><Link href="/contact"><a>Contact</a></Link></Menu.Item>
-        {me ? <Menu.Item key="conracts"><Link href="/contacts"><a>Contacts</a></Link></Menu.Item> : <></>}
         <Menu.Item key="search">
           <SearchInput
             enterButton
