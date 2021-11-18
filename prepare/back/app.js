@@ -33,7 +33,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(hpp());
   app.use(helmet({ contentSecurityPolicy: false }));
   app.use(cors({
-    origin: 'shareknot.com',
+    origin: ['shareknot.com', 'http://3.96.213.206'],
     credentials: true,
   }));
 } else {
@@ -72,6 +72,13 @@ app.use('/post', postRouter);
 app.use('/user', userRouter);
 app.use('/hashtag', hashtagRouter);
 
-app.listen(3065, () => {
-  console.log('서버 실행 중!');
-});
+
+if (process.env.NODE_ENV === 'production') {
+  app.listen(80, () => {
+    console.log('운영 서버 실행 중!');
+  });
+} else {
+  app.listen(3065, () => {
+    console.log('서버 실행 중!');
+  });
+}
