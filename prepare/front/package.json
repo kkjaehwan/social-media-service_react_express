@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next -p 3060",
     "dev:build": "cross-env ANALYZE=true next build",
+    "dev:start": "cross-env next start -p 3060",
     "build": "cross-env ANALYZE=true NODE_ENV=production next build",
     "start": "cross-env NODE_ENV=production next start -p 80"
   },
@@ -21,7 +22,7 @@
     "faker": "^5.5.3",
     "immer": "^9.0.6",
     "moment": "^2.27.0",
-    "next": "^12.0.4",
+    "next": "^11.1.2",
     "next-redux-wrapper": "^7.0.2",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",

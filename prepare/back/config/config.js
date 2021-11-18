@@ -2,7 +2,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-module.exports={
+module.exports = {
   "development": {
     "username": "root",
     "password": process.env.DB_PASSWORD,
