@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
