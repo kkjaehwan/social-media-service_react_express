@@ -6,6 +6,8 @@ const passport = require('passport');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const path = require('path');
+const hpp = require('hpp');
+const helmet = require('helmet');
 
 const contactRouter = require('./routes/contact');
 const contactsRouter = require('./routes/contacts');
@@ -25,13 +27,24 @@ db.sequelize.sync()
   .catch(console.error);
 passportConfig();
 
-app.use(morgan('dev'));
+if (process.env.NODE_ENV === 'production') {
+  app.enable('trust proxy');
+  app.use(morgan('combined'));
+  app.use(hpp());
+  app.use(helmet({ contentSecurityPolicy: false }));
+  app.use(cors({
+    origin: 'shareknot.com',
+    credentials: true,
+  }));
+} else {
+  app.use(morgan('dev'));
+  //CORS 문제 해결
+  app.use(cors({
+    origin: 'http://localhost:3060',
+    credentials: true,
+  }));
+}
 
-//CORS 문제 해결
-app.use(cors({
-  origin: 'http://localhost:3060',
-  credentials: true,
-}));
 
 //images 경로 업로드 파일 경로를 열어주는 것. 
 //Front에서 Back 경로를 가릴수 있음
