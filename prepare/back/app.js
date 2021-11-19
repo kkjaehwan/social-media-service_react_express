@@ -33,7 +33,7 @@ if (process.env.NODE_ENV?.trim() === 'production') {
   app.use(hpp());
   app.use(helmet({ contentSecurityPolicy: false }));
   app.use(cors({
-    origin: ['tossknot.com'],
+    origin: ['http://tossknot.com'],
     credentials: true,
   }));
 } else {
