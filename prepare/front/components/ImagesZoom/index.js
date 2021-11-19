@@ -23,7 +23,7 @@ const ImagesZoom = ({ images, onClose }) => {
     <Overlay>
       <Global />
       <Header>
-        <h1>상세 이미지</h1>
+        <h1>Image Detail</h1>
         <CloseBtn onClick={onClose} />
       </Header>
       <SlickWrapper>
@@ -38,7 +38,7 @@ const ImagesZoom = ({ images, onClose }) => {
           >
             {images.map((v) => (
               <ImgWrapper key={v.src}>
-                <img src={`${v.src}`} alt={v.src} />
+                <img src={`${v.src.replace(/\/thumb\//, '/original/')}`} alt={v.src} />
               </ImgWrapper>
             ))}
           </Slick>
