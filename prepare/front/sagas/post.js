@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { all, fork, put, takeLatest, throttle, call } from 'redux-saga/effects';
+import { all, fork, put, takeLatest, call } from 'redux-saga/effects';
 
 import {
   ADD_COMMENT_FAILURE,
@@ -275,13 +275,13 @@ function* watchUnlikePost() {
 }
 
 function* watchLoadUserPosts() {
-  yield throttle(5000, LOAD_USER_POSTS_REQUEST, loadUserPosts);
+  yield takeLatest(LOAD_USER_POSTS_REQUEST, loadUserPosts);
 }
 function* watchLoadHashtagPosts() {
-  yield throttle(5000, LOAD_HASHTAG_POSTS_REQUEST, loadHashtagPosts);
+  yield takeLatest(LOAD_HASHTAG_POSTS_REQUEST, loadHashtagPosts);
 }
 function* watchLoadPosts() {
-  yield throttle(5000, LOAD_POSTS_REQUEST, loadPosts);
+  yield takeLatest(LOAD_POSTS_REQUEST, loadPosts);
 }
 
 function* watchLoadPost() {

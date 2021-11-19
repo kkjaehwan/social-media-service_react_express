@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { all, fork, put, takeLatest, throttle, call } from 'redux-saga/effects';
+import { all, fork, put, takeLatest, call } from 'redux-saga/effects';
 
 import {
   ADD_CONTACT_FAILURE,
@@ -75,7 +75,7 @@ function* removeContact(action) {
 }
 
 function* watchLoadContacts() {
-  yield throttle(5000, LOAD_CONTACTS_REQUEST, loadContacts);
+  yield takeLatest(LOAD_CONTACTS_REQUEST, loadContacts);
 }
 
 function* watchAddContact() {
