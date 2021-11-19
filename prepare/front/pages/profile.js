@@ -2,8 +2,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 import Head from 'next/head';
 import { useSelector } from 'react-redux';
 import Router from 'next/router';
-import axios from 'axios';
 import { END } from 'redux-saga';
+import axios from 'axios';
 import useSWR from 'swr';
 
 import AppLayout from '../components/AppLayout';
