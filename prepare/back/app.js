@@ -73,11 +73,15 @@ app.use('/user', userRouter);
 app.use('/hashtag', hashtagRouter);
 
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV?.trim() === 'production') {
+  console.log('node_env', process.env.NODE_ENV);
+  console.log('process.env.NODE_ENV?.trim() === production', process.env.NODE_ENV?.trim() === 'production');
   app.listen(80, () => {
     console.log('운영 서버 실행 중!');
   });
 } else {
+  console.log('node_env', process.env.NODE_ENV);
+  console.log('process.env.NODE_ENV?.trim() === production', process.env.NODE_ENV?.trim() === 'production');
   app.listen(3065, () => {
     console.log('서버 실행 중!');
   });
