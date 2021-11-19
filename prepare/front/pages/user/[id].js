@@ -43,12 +43,11 @@ const User = () => {
       {userInfo && (
         <Head>
           <title>
-            {userInfo.nickname}
-            님의 글
+            {userInfo.nickname}{"'s Posts"}
           </title>
-          <meta name="description" content={`${userInfo.nickname}님의 게시글`} />
-          <meta property="og:title" content={`${userInfo.nickname}님의 게시글`} />
-          <meta property="og:description" content={`${userInfo.nickname}님의 게시글`} />
+          <meta name="description" content={`${userInfo.nickname}{"'s Posts"}`} />
+          <meta property="og:title" content={`${userInfo.nickname}{"'s Posts"}`} />
+          <meta property="og:description" content={`${userInfo.nickname}{"'s Posts"}`} />
           <meta property="og:image" content="https://tossknot.com/favicon.ico" />
           <meta property="og:url" content={`https://tossknot.com/user/${id}`} />
         </Head>
@@ -59,17 +58,17 @@ const User = () => {
             style={{ marginBottom: 20 }}
             actions={[
               <div key="twit">
-                짹짹
+                Twits
                 <br />
                 {userInfo.Posts}
               </div>,
               <div key="following">
-                팔로잉
+                Followings
                 <br />
                 {userInfo.Followings}
               </div>,
               <div key="follower">
-                팔로워
+                Followers
                 <br />
                 {userInfo.Followers}
               </div>,

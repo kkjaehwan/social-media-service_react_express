@@ -5,7 +5,7 @@ import Router from 'next/router';
 
 import AppLayout from '../../components/AppLayout';
 import NicknameEditForm from '../../components/NicknameEditForm';
-import FollowList from '../../components/FollowList';
+import FollowList, { Follower, Following } from '../../components/FollowList';
 import { LOAD_FOLLOWERS_REQUEST, LOAD_FOLLOWINGS_REQUEST } from '../../reducers/user';
 
 const Profile = () => {
@@ -38,8 +38,8 @@ const Profile = () => {
       </Head>
       <AppLayout>
         <NicknameEditForm />
-        <FollowList header="팔로잉" data={me.Followings} />
-        <FollowList header="팔로워" data={me.Followers} />
+        <FollowList header={Following} data={me.Followings} />
+        <FollowList header={Follower} data={me.Followers} />
       </AppLayout>
     </>
   );

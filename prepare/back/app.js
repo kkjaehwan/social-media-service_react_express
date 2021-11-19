@@ -22,7 +22,7 @@ dotenv.config();
 const app = express();
 db.sequelize.sync()
   .then(() => {
-    console.log('db 연결 성공');
+    console.log('DB connection successful.');
   })
   .catch(console.error);
 passportConfig();
@@ -82,12 +82,12 @@ if (process.env.NODE_ENV?.trim() === 'production') {
   console.log('node_env', process.env.NODE_ENV);
   console.log('process.env.NODE_ENV?.trim() === production', process.env.NODE_ENV?.trim() === 'production');
   app.listen(80, () => {
-    console.log('운영 서버 실행 중!');
+    console.log('Production server is running!');
   });
 } else {
   console.log('node_env', process.env.NODE_ENV);
   console.log('process.env.NODE_ENV?.trim() === production', process.env.NODE_ENV?.trim() === 'production');
   app.listen(3065, () => {
-    console.log('서버 실행 중!');
+    console.log('Not production server is running!');
   });
 }

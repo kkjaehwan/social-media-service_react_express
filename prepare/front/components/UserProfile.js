@@ -15,16 +15,16 @@ const UserProfile = () => {
   return (
     <Card
       actions={[
-        <div key="twit">짹짹<br />{me.Posts.length}</div>,
-        <div key="followings">팔로잉<br />{me.Followings.length}</div>,
-        <div key="followings">팔로워<br />{me.Followers.length}</div>,
+        <div key="twit">Twits<br />{me.Posts.length}</div>,
+        <div key="followings">Followings<br />{me.Followings.length}</div>,
+        <div key="followings">Followers<br />{me.Followers.length}</div>,
       ]}
     >
       <Card.Meta
         avatar={<Avatar>{me.nickname[0]}</Avatar>}
         title={me.nickname}
       />
-      <Button onClick={onLogOut} loading={logOutLoading}>로그아웃</Button>
+      <Button onClick={onLogOut} loading={logOutLoading}>Logout</Button>
     </Card>
   );
 };

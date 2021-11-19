@@ -6,10 +6,13 @@ import { useDispatch } from 'react-redux';
 
 import { UNFOLLOW_REQUEST, REMOVE_FOLLOWER_REQUEST } from '../reducers/user';
 
+export const Following = 'Following';
+export const Follower = 'Follower';
+
 const FollowList = ({ header, data }) => {
   const dispatch = useDispatch();
   const onCancel = (id) => () => {
-    if (header === '팔로잉') {
+    if (header === Following) {
       dispatch({
         type: UNFOLLOW_REQUEST,
         data: id,
@@ -27,7 +30,7 @@ const FollowList = ({ header, data }) => {
       grid={{ gutter: 4, xs: 2, md: 3 }}
       size="small"
       header={<div>{header}</div>}
-      loadMore={<div style={{ textAlign: 'center', margin: '10px 0' }}><Button>더 보기</Button></div>}
+      loadMore={<div style={{ textAlign: 'center', margin: '10px 0' }}><Button>See more</Button></div>}
       bordered
       dataSource={data}
       renderItem={(item) => (

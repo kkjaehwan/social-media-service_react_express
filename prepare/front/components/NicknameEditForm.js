@@ -22,8 +22,8 @@ const NicknameEditForm = () => {
       <Input.Search
         value={nickname}
         onChange={onChangeNickname}
-        addonBefore="닉네임"
-        enterButton="수정"
+        addonBefore="Nickname"
+        enterButton="Modify"
         onSearch={onSubmit}
       />
     </Form>

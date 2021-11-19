@@ -53,7 +53,7 @@ const Contact = () => {
                 </Text>
               </Paragraph>
               <Paragraph>
-                Do you want to develop or maintain your web site?
+                Do you want to develop or maintain your website?
                 <br />
                 Simply fill out and submit the contact form and
                 I’ll get back to you as soon as possible.

@@ -73,26 +73,26 @@ const Signup = () => {
   return (
     <AppLayout>
       <Head>
-        <title>회원가입 | TossKnot</title>
+        <title>Sign In | TossKnot</title>
       </Head>
       <Form onFinish={onSubmit}>
         <div>
-          <label htmlFor="user-email">이메일</label>
+          <label htmlFor="user-email">Email</label>
           <br />
           <Input name="user-email" type="email" value={email} required onChange={onChangeEmail} />
         </div>
         <div>
-          <label htmlFor="user-nick">닉네임</label>
+          <label htmlFor="user-nick">Nickname</label>
           <br />
           <Input name="user-nick" value={nickname} required onChange={onChangeNickname} />
         </div>
         <div>
-          <label htmlFor="user-password">비밀번호</label>
+          <label htmlFor="user-password">Password</label>
           <br />
           <Input name="user-password" type="password" value={password} required onChange={onChangePassword} />
         </div>
         <div>
-          <label htmlFor="user-password-check">비밀번호체크</label>
+          <label htmlFor="user-password-check">Confirm Password</label>
           <br />
           <Input
             name="user-password-check"
@@ -101,14 +101,14 @@ const Signup = () => {
             required
             onChange={onChangePasswordCheck}
           />
-          {passwordError && <ErrorMessage>비밀번호가 일치하지 않습니다.</ErrorMessage>}
+          {passwordError && <ErrorMessage>The password doesn&apos;t match.</ErrorMessage>}
         </div>
         <div>
-          <Checkbox name="user-term" checked={term} onChange={onChangeTerm}>말을 잘 들을 것을 동의합니다.</Checkbox>
-          {termError && <ErrorMessage>약관에 동의하셔야 합니다.</ErrorMessage>}
+          <Checkbox name="user-term" checked={term} onChange={onChangeTerm}>I agree to the terms and conditions.</Checkbox>
+          {termError && <ErrorMessage>You have to agree to the terms and conditions.</ErrorMessage>}
         </div>
         <div style={{ marginTop: 10 }}>
-          <Button type="primary" htmlType="submit" loading={signUpLoading}>가입하기</Button>
+          <Button type="primary" htmlType="submit" loading={signUpLoading}>Sign In</Button>
         </div>
       </Form>
     </AppLayout>

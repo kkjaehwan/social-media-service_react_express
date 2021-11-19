@@ -45,7 +45,7 @@ router.get('/followers', isLoggedIn, async (req, res, next) => { // GET /user/fo
   try {
     const user = await User.findOne({ where: { id: req.user.id }});
     if (!user) {
-      res.status(403).send('없는 사람을 찾으려고 하시네요?');
+      res.status(403).send("The user doesn't exist.");
     }
     const followers = await user.getFollowers({
       attributes: ['id', 'nickname'],
@@ -62,7 +62,7 @@ router.get('/followings', isLoggedIn, async (req, res, next) => { // GET /user/f
   try {
     const user = await User.findOne({ where: { id: req.user.id }});
     if (!user) {
-      res.status(403).send('없는 사람을 찾으려고 하시네요?');
+      res.status(403).send("The user doesn't exist.");
     }
     const followings = await user.getFollowings({
       attributes: ['id', 'nickname'],
@@ -102,7 +102,7 @@ router.get('/:id', async (req, res, next) => { // GET /user/3
       data.Followers = data.Followers.length;
       res.status(200).json(data);
     } else {
-      res.status(404).json('존재하지 않는 사용자입니다.');
+      res.status(403).send("The user doesn't exist.");
     }
   } catch (error) {
     console.error(error);
@@ -151,7 +151,7 @@ router.get('/:id/posts', async (req, res, next) => { // GET /user/1/posts
       console.log(posts);
       res.status(200).json(posts);
     } else {
-      res.status(404).send('존재하지 않는 사용자입니다.');
+      res.status(403).send("The user doesn't exist.");
     }
   } catch (error) {
     console.error(error);
@@ -204,7 +204,7 @@ router.post('/', isNotLoggedIn, async (req, res, next) => { // POST /user/
       }
     });
     if (exUser) {
-      return res.status(403).send('이미 사용 중인 아이디입니다.');
+      return res.status(403).send('This email is already in use.');
     }
     const hashedPassword = await bcrypt.hash(req.body.password, 12);
     await User.create({
@@ -243,7 +243,7 @@ router.patch('/:userId/follow', isLoggedIn, async (req, res, next) => { // PATCH
   try {
     const user = await User.findOne({ where: { id: req.params.userId }});
     if (!user) {
-      res.status(403).send('없는 사람을 팔로우하려고 하시네요?');
+      res.status(403).send("The user doesn't exist.");
     }
     await user.addFollowers(req.user.id);
     res.status(200).json({ UserId: parseInt(req.params.userId, 10) });
@@ -257,7 +257,7 @@ router.delete('/:userId/follow', isLoggedIn, async (req, res, next) => { // DELE
   try {
     const user = await User.findOne({ where: { id: req.params.userId }});
     if (!user) {
-      res.status(403).send('없는 사람을 언팔로우하려고 하시네요?');
+      res.status(403).send("The user doesn't exist.");
     }
     await user.removeFollowers(req.user.id);
     res.status(200).json({ UserId: parseInt(req.params.userId, 10) });
@@ -271,7 +271,7 @@ router.delete('/follower/:userId', isLoggedIn, async (req, res, next) => { // DE
   try {
     const user = await User.findOne({ where: { id: req.params.userId }});
     if (!user) {
-      res.status(403).send('없는 사람을 차단하려고 하시네요?');
+      res.status(403).send("The user doesn't exist.");
     }
     await user.removeFollowings(req.user.id);
     res.status(200).json({ UserId: parseInt(req.params.userId, 10) });

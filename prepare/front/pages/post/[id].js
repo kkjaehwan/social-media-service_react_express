@@ -21,11 +21,10 @@ const Post = () => {
     <AppLayout>
       <Head>
         <title>
-          {singlePost.User.nickname}
-          님의 글
+          {singlePost.User.nickname}{"'s Posts"}
         </title>
         <meta name="description" content={singlePost.content} />
-        <meta property="og:title" content={`${singlePost.User.nickname}님의 게시글`} />
+        <meta property="og:title" content={`${singlePost.User.nickname}{"'s Posts"}`} />
         <meta property="og:description" content={singlePost.content} />
         <meta property="og:image" content={singlePost.Images[0] ? singlePost.Images[0].src : 'localhost:3060/favicon.ico'} />
         <meta property="og:url" content={`localhost:3060/post/${id}`} />

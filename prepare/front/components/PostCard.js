@@ -24,7 +24,7 @@ const PostCard = ({ post }) => {
 
   const onLike = useCallback(() => {
     if (!id) {
-      return alert('로그인이 필요합니다.');
+      return alert('You need to log in.');
     }
     return dispatch({
       type: LIKE_POST_REQUEST,
@@ -33,7 +33,7 @@ const PostCard = ({ post }) => {
   }, [id]);
   const onUnlike = useCallback(() => {
     if (!id) {
-      return alert('로그인이 필요합니다.');
+      return alert('You need to log in.');
     }
     return dispatch({
       type: UNLIKE_POST_REQUEST,
@@ -46,7 +46,7 @@ const PostCard = ({ post }) => {
 
   const onRemovePost = useCallback(() => {
     if (!id) {
-      return alert('로그인이 필요합니다.');
+      return alert('You need to log in.');
     }
     return dispatch({
       type: REMOVE_POST_REQUEST,
@@ -56,7 +56,7 @@ const PostCard = ({ post }) => {
 
   const onRetweet = useCallback(() => {
     if (!id) {
-      return alert('로그인이 필요합니다.');
+      return alert('You need to log in.');
     }
     return dispatch({
       type: RETWEET_REQUEST,
@@ -82,18 +82,18 @@ const PostCard = ({ post }) => {
                 {id && post.User.id === id
                   ? (
                     <>
-                      <Button>수정</Button>
-                      <Button type="danger" loading={removePostLoading} onClick={onRemovePost}>삭제</Button>
+                      <Button>Modify</Button>
+                      <Button type="danger" loading={removePostLoading} onClick={onRemovePost}>Delete</Button>
                     </>
                   )
-                  : <Button>신고</Button>}
+                  : <Button>Report</Button>}
               </Button.Group>
             )}
           >
             <EllipsisOutlined />
           </Popover>,
         ]}
-        title={post.RetweetId ? `${post.User.nickname}님이 리트윗하셨습니다.` : null}
+        title={post.RetweetId ? `${post.User.nickname} retweeted it` : null}
         extra={id && <FollowButton post={post} />}
       >
         {post.RetweetId && post.Retweet
@@ -132,7 +132,7 @@ const PostCard = ({ post }) => {
         <div>
           <CommentForm post={post} />
           <List
-            header={`${post.Comments.length}개의 댓글`}
+            header={`${post.Comments.length} comments`}
             itemLayout="horizontal"
             dataSource={post.Comments}
             renderItem={(item) => (
