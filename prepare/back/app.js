@@ -33,7 +33,7 @@ if (process.env.NODE_ENV?.trim() === 'production') {
   app.use(hpp());
   app.use(helmet({ contentSecurityPolicy: false }));
   app.use(cors({
-    origin: ['shareknot.com', 'http://3.96.213.206'],
+    origin: ['tossknot.com'],
     credentials: true,
   }));
 } else {
@@ -57,6 +57,11 @@ app.use(session({
   saveUninitialized: false,
   resave: false,
   secret: process.env.COOKIE_SECRET,
+  cookie: {
+    httpOnly: true,
+    secure: false,
+    domain: process.env.NODE_ENV === 'production' && '.tossknot.com'
+  },
 }));
 app.use(passport.initialize());
 app.use(passport.session());

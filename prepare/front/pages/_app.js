@@ -7,22 +7,22 @@ import 'antd/dist/antd.css';
 import wrapper from '../store/configureStore';
 import { backUrl } from '../config/config';
 
-const ShareKnot = ({ Component }) => {
+const TossKnot = ({ Component }) => {
   console.log('node_env', process.env.NODE_ENV);
   console.log('backUrl', backUrl);
   return (
     <>
       <Head>
         <meta charSet="utf-8" />
-        <title>ShareKnot</title>
+        <title>TossKnot</title>
       </Head>
       <Component />
     </>
   );
 };
 
-ShareKnot.propTypes = {
+TossKnot.propTypes = {
   Component: PropTypes.elementType.isRequired,
 };
 
-export default wrapper.withRedux(ShareKnot);
+export default wrapper.withRedux(TossKnot);

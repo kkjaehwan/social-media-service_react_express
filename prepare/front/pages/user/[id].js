@@ -49,8 +49,8 @@ const User = () => {
           <meta name="description" content={`${userInfo.nickname}님의 게시글`} />
           <meta property="og:title" content={`${userInfo.nickname}님의 게시글`} />
           <meta property="og:description" content={`${userInfo.nickname}님의 게시글`} />
-          <meta property="og:image" content="https://shareknot.com/favicon.ico" />
-          <meta property="og:url" content={`https://shareknot.com/user/${id}`} />
+          <meta property="og:image" content="https://tossknot.com/favicon.ico" />
+          <meta property="og:url" content={`https://tossknot.com/user/${id}`} />
         </Head>
       )}
       {userInfo && (userInfo.id !== me?.id)

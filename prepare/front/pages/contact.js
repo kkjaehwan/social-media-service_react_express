@@ -33,7 +33,7 @@ const Contact = () => {
   return (
     <>
       <Head>
-        <title>Contact | ShareKnot</title>
+        <title>Contact | TossKnot</title>
       </Head>
       <AppLayout>
         <Row gutter={12}>

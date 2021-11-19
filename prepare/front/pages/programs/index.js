@@ -34,7 +34,7 @@ const Profile = () => {
   return (
     <>
       <Head>
-        <title>Contact | ShareKnot</title>
+        <title>Contact | TossKnot</title>
       </Head>
       <AppLayout>
         <NicknameEditForm />

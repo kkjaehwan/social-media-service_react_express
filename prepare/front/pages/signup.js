@@ -73,7 +73,7 @@ const Signup = () => {
   return (
     <AppLayout>
       <Head>
-        <title>회원가입 | ShareKnot</title>
+        <title>회원가입 | TossKnot</title>
       </Head>
       <Form onFinish={onSubmit}>
         <div>
