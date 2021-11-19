@@ -4,5 +4,6 @@ back/node_modules
 back/.env
 .env
 .next
-node_modules
+node_modules/
+lambda/node_modules
 # react-shareknot.pem
