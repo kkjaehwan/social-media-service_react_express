@@ -130,7 +130,7 @@ const PostCard = ({ post }) => {
       </Card>
       {commentFormOpened && (
         <div>
-          <CommentForm post={post} />
+          {id && <CommentForm post={post} />}
           <List
             header={`${post.Comments.length} comments`}
             itemLayout="horizontal"
