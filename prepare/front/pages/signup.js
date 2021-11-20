@@ -1,16 +1,16 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import Head from 'next/head';
-import { Form, Input, Checkbox, Button } from 'antd';
+import { Form, Input, Checkbox, Button, Col, Row } from 'antd';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import Router from 'next/router';
 import axios from 'axios';
 import { END } from 'redux-saga';
 
-import AppLayout from '../components/AppLayout';
 import useInput from '../hooks/useInput';
 import { LOAD_MY_INFO_REQUEST, SIGN_UP_REQUEST } from '../reducers/user';
 import wrapper from '../store/configureStore';
+import AppTopLayout from '../components/AppTopLayout';
 
 const ErrorMessage = styled.div`
   color: red;
@@ -71,47 +71,55 @@ const Signup = () => {
   }, [email, password, passwordCheck, term]);
 
   return (
-    <AppLayout>
-      <Head>
-        <title>Sign up | TossKnot</title>
-      </Head>
-      <Form onFinish={onSubmit}>
-        <div>
-          <label htmlFor="user-email">Email</label>
-          <br />
-          <Input name="user-email" type="email" value={email} required onChange={onChangeEmail} />
-        </div>
-        <div>
-          <label htmlFor="user-nick">Nickname</label>
-          <br />
-          <Input name="user-nick" value={nickname} required onChange={onChangeNickname} />
-        </div>
-        <div>
-          <label htmlFor="user-password">Password</label>
-          <br />
-          <Input name="user-password" type="password" value={password} required onChange={onChangePassword} />
-        </div>
-        <div>
-          <label htmlFor="user-password-check">Confirm Password</label>
-          <br />
-          <Input
-            name="user-password-check"
-            type="password"
-            value={passwordCheck}
-            required
-            onChange={onChangePasswordCheck}
-          />
-          {passwordError && <ErrorMessage>The password doesn&apos;t match.</ErrorMessage>}
-        </div>
-        <div>
-          <Checkbox name="user-term" checked={term} onChange={onChangeTerm}>I agree to the terms and conditions.</Checkbox>
-          {termError && <ErrorMessage>You have to agree to the terms and conditions.</ErrorMessage>}
-        </div>
-        <div style={{ marginTop: 10 }}>
-          <Button type="primary" htmlType="submit" loading={signUpLoading}>Sign Up</Button>
-        </div>
-      </Form>
-    </AppLayout>
+    <>
+      <AppTopLayout />
+      <Row gutter={12}>
+        <Col xs={24} md={8} />
+        <Col xs={24} md={8}>
+          <Head>
+            <title>Sign up | TossKnot</title>
+          </Head>
+          <Form onFinish={onSubmit}>
+            <div>
+              <label htmlFor="user-email">Email</label>
+              <br />
+              <Input name="user-email" type="email" value={email} required onChange={onChangeEmail} />
+            </div>
+            <div>
+              <label htmlFor="user-nick">Nickname</label>
+              <br />
+              <Input name="user-nick" value={nickname} required onChange={onChangeNickname} />
+            </div>
+            <div>
+              <label htmlFor="user-password">Password</label>
+              <br />
+              <Input name="user-password" type="password" value={password} required onChange={onChangePassword} />
+            </div>
+            <div>
+              <label htmlFor="user-password-check">Confirm Password</label>
+              <br />
+              <Input
+                name="user-password-check"
+                type="password"
+                value={passwordCheck}
+                required
+                onChange={onChangePasswordCheck}
+              />
+              {passwordError && <ErrorMessage>The password doesn&apos;t match.</ErrorMessage>}
+            </div>
+            <div>
+              <Checkbox name="user-term" checked={term} onChange={onChangeTerm}>I agree to the terms and conditions.</Checkbox>
+              {termError
+                && <ErrorMessage>You have to agree to the terms and conditions.</ErrorMessage>}
+            </div>
+            <div style={{ marginTop: 10 }}>
+              <Button type="primary" htmlType="submit" loading={signUpLoading}>Sign Up</Button>
+            </div>
+          </Form>
+        </Col>
+        <Col xs={24} md={8} />
+      </Row>
+    </>
   );
 };
 // server side rendering.
