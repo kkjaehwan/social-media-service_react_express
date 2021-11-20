@@ -70,6 +70,9 @@ export const ImgWrapper = styled.div`
   
   & img {
     margin: 0 auto;
-    max-height: 750px;
+    max-height: 500px;
+    @media (max-width: 768px) {
+      max-width: 100%;
+    }
   }
 `;

@@ -18,7 +18,7 @@ const ContactsTable = ({ contacts }) => {
 
   return (
     <>
-      <Table dataSource={contacts}>
+      <Table dataSource={contacts} scroll={{ x: 320 }}>
         <Column title="Email" dataIndex="email" key="email" />
         <Column title="Name" dataIndex="nickname" key="nickname" />
         <Column title="Content" dataIndex="content" key="content" />
