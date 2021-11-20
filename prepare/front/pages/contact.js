@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Head from 'next/head';
 import { Typography, Row, Col } from 'antd';
-import { AlertOutlined, CrownTwoTone, EnvironmentTwoTone, MailOutlined, PhoneOutlined } from '@ant-design/icons';
+import { AlertOutlined, CrownTwoTone, EnvironmentTwoTone, MailOutlined, PhoneOutlined, UnorderedListOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { END } from 'redux-saga';
 
@@ -87,13 +87,16 @@ const Contact = () => {
           </Col>
           <Col xs={24} sm={24} md={24} lg={12}>
             <BasicGrayDivWrapper>
-              <Iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d77105.61663177209!2d-79.48251001093801!3d43.664410288696466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b35d32336f705%3A0x1bcc825a300ee67!2z7ZWY7J20IOqzteybkA!5e0!3m2!1sko!2sca!4v1637372623743!5m2!1sko!2sca" width="100%" height="100%" />
+              <Iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d77105.61663177209!2d-79.48251001093801!3d43.664410288696466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b35d32336f705%3A0x1bcc825a300ee67!2z7ZWY7J20IOqzteybkA!5e0!3m2!1sko!2sca!4v1637372623743!5m2!1sko!2sca" />
             </BasicGrayDivWrapper>
           </Col>
         </Row>
-        <Row>
+        <Row gutter={12}>
           <Col xs={24} sm={24} md={24} lg={24}>
-            <ContactsTable key={mainContacts} contacts={mainContacts} />
+            <BasicWhiteDivWrapper>
+              <Title><UnorderedListOutlined /> Contact List</Title>
+              <ContactsTable style={{ paddingTop: '100' }} key={mainContacts} contacts={mainContacts} />
+            </BasicWhiteDivWrapper>
           </Col>
         </Row>
       </AppLayout>

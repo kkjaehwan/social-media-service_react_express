@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { Typography, Form, Input, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
+import { ContactsOutlined } from '@ant-design/icons';
 
 import useInput from '../hooks/useInput';
 import { BasicGrayDivWrapper } from './styles';
@@ -47,7 +48,7 @@ const ContactForm = () => {
   return (
     <>
       <BasicGrayDivWrapper>
-        <Title>Contact Form</Title>
+        <Title><ContactsOutlined /> Contact Form</Title>
         <Form encType="multipart/form-data" onFinish={onSubmitForm}>
           <div>
             <label htmlFor="user-email">Email</label>
