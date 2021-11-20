@@ -1,13 +1,14 @@
 import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { Card, Popover, Button, Avatar, List, Comment, Badge } from 'antd';
+import { Card, Popover, Button, Avatar, List, Comment, Badge, Tooltip } from 'antd';
 import {
   RetweetOutlined, MessageOutlined, EllipsisOutlined, LikeTwoTone, LikeOutlined,
 } from '@ant-design/icons';
 import Link from 'next/link';
 import moment from 'moment';
 
+import Text from 'antd/lib/typography/Text';
 import PostImages from './PostImages';
 import CommentForm from './CommentForm';
 import PostCardContent from './PostCardContent';
@@ -103,7 +104,11 @@ const PostCard = ({ post }) => {
             <Card
               cover={post.Retweet.Images[0] && <PostImages images={post.Retweet.Images} />}
             >
-              <div style={{ float: 'right' }}>{moment(post.createdAt).format('YYYY.MM.DD')}</div>
+              <div style={{ float: 'right' }}>
+                <Text code>
+                  {moment(post.createdAt).format('YYYY-MM-DD')}
+                </Text>
+              </div>
               <Card.Meta
                 avatar={(
                   <Link href={`/user/${post.Retweet.User.id}`} prefetch={false}>
@@ -117,7 +122,11 @@ const PostCard = ({ post }) => {
           )
           : (
             <>
-              <div style={{ float: 'right' }}>{moment(post.createdAt).format('YYYY.MM.DD')}</div>
+              <div style={{ float: 'right' }}>
+                <Text code>
+                  {moment(post.createdAt).format('YYYY-MM-DD')}
+                </Text>
+              </div>
               <Card.Meta
                 avatar={(
                   <Link href={`/user/${post.User.id}`} prefetch={false}>
@@ -142,10 +151,13 @@ const PostCard = ({ post }) => {
                   author={item.User.nickname}
                   avatar={(
                     <Link href={`/user/${item.User.id}`} prefetch={false}>
-                      <a><Avatar src={`https://joeschmoe.io/api/v1/${item.User.nickname[0]}`} style={{ width: 20, height: 20, verticalAlign: 'top' }} /></a>
+                      <a><Avatar src={`https://joeschmoe.io/api/v1/${item.User.nickname[0]}`} /></a>
                     </Link>
                   )}
                   content={item.content}
+                  datetime={(
+                    <Tooltip>{moment(item.createdAt).format('YYYY-MM-DD HH:mm:ss')}</Tooltip>
+                  )}
                 />
               </li>
             )}
