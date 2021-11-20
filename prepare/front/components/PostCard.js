@@ -105,7 +105,7 @@ const PostCard = ({ post }) => {
               <Card.Meta
                 avatar={(
                   <Link href={`/user/${post.Retweet.User.id}`} prefetch={false}>
-                    <a><Avatar>{post.Retweet.User.nickname[0]}</Avatar></a>
+                    <a><Avatar src={`https://joeschmoe.io/api/v1/${post.Retweet.User.nickname[0]}`} style={{ width: 20, height: 20, verticalAlign: 'top' }} /></a>
                   </Link>
                 )}
                 title={post.Retweet.User.nickname}
@@ -119,7 +119,7 @@ const PostCard = ({ post }) => {
               <Card.Meta
                 avatar={(
                   <Link href={`/user/${post.User.id}`} prefetch={false}>
-                    <a><Avatar>{post.User.nickname[0]}</Avatar></a>
+                    <a><Avatar src={`https://joeschmoe.io/api/v1/${post.User.nickname[0]}`} style={{ width: 20, height: 20, verticalAlign: 'top' }} /></a>
                   </Link>
                 )}
                 title={post.User.nickname}
@@ -141,7 +141,7 @@ const PostCard = ({ post }) => {
                   author={item.User.nickname}
                   avatar={(
                     <Link href={`/user/${item.User.id}`} prefetch={false}>
-                      <a><Avatar>{item.User.nickname[0]}</Avatar></a>
+                      <a><Avatar src={`https://joeschmoe.io/api/v1/${item.User.nickname[0]}`} style={{ width: 20, height: 20, verticalAlign: 'top' }} /></a>
                     </Link>
                   )}
                   content={item.content}

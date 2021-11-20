@@ -2,8 +2,14 @@ import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, Avatar, Button } from 'antd';
 
+import styled from 'styled-components';
+import { LogoutOutlined, UserOutlined } from '@ant-design/icons';
 import { logoutRequestAction } from '../reducers/user';
 
+const ButtonWrapper = styled(Button)`
+    margin-top: 5px;
+    width: 100%;
+`;
 const UserProfile = () => {
   const dispatch = useDispatch();
   const { me, logOutLoading } = useSelector((state) => state.user);
@@ -21,10 +27,16 @@ const UserProfile = () => {
       ]}
     >
       <Card.Meta
-        avatar={<Avatar>{me.nickname[0]}</Avatar>}
+        avatar={<Avatar src={`https://joeschmoe.io/api/v1/${me.nickname[0]}`} style={{ width: 20, height: 20, verticalAlign: 'top', marginBottom: 10 }} />}
         title={me.nickname}
       />
-      <Button onClick={onLogOut} loading={logOutLoading}>Logout</Button>
+      <ButtonWrapper icon={<UserOutlined />} href="/profile">Profile</ButtonWrapper>
+      <ButtonWrapper
+        icon={<LogoutOutlined />}
+        onClick={onLogOut}
+        loading={logOutLoading}
+      >Logout
+      </ButtonWrapper>
     </Card>
   );
 };

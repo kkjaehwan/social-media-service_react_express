@@ -75,7 +75,7 @@ const User = () => {
             ]}
           >
             <Card.Meta
-              avatar={<Avatar>{userInfo.nickname[0]}</Avatar>}
+              avatar={<Avatar src={`https://joeschmoe.io/api/v1/${userInfo.nickname[0]}`} style={{ width: 20, height: 20, verticalAlign: 'top' }} />}
               title={userInfo.nickname}
             />
           </Card>
