@@ -7,10 +7,10 @@ import Router from 'next/router';
 import axios from 'axios';
 import { END } from 'redux-saga';
 
+import AppTopLayout from '../components/AppTopLayout';
 import useInput from '../hooks/useInput';
 import { LOAD_MY_INFO_REQUEST, SIGN_UP_REQUEST } from '../reducers/user';
 import wrapper from '../store/configureStore';
-import AppTopLayout from '../components/AppTopLayout';
 
 const ErrorMessage = styled.div`
   color: red;
