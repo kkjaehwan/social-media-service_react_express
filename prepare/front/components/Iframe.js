@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Iframe = ({ src, heigth, width }) => (
+const Iframe = ({ src, height, width }) => (
   <div>
-    <iframe title={src} src={src} height={heigth} width={width} />
+    <iframe title={src} src={src} height={height} width={width} />
   </div>
 );
 
 Iframe.propTypes = {
   src: PropTypes.string.isRequired,
-  heigth: PropTypes.string.isRequired,
+  height: PropTypes.string.isRequired,
   width: PropTypes.string.isRequired,
 };
 export default Iframe;

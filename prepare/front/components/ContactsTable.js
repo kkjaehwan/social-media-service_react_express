@@ -39,8 +39,8 @@ const ContactsTable = ({ contacts }) => {
 ContactsTable.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string,
-      key: PropTypes.string,
+      id: PropTypes.number,
+      key: PropTypes.number,
       email: PropTypes.string,
       content: PropTypes.string,
       createdAt: PropTypes.string,
