@@ -64,7 +64,7 @@ const ContactForm = () => {
             value={text}
             onChange={onChangeText}
             maxLength={140}
-            placeholder="write what you want down."
+            placeholder="write your message."
           />
           <div style={buttonStyle}>
             <Button type="primary" htmlType="submit">Submit</Button>

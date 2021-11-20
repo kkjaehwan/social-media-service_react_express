@@ -93,7 +93,7 @@ const PostCard = ({ post }) => {
             <EllipsisOutlined />
           </Popover>,
         ]}
-        title={post.RetweetId ? `${post.User.nickname} retweeted it` : null}
+        title={post.RetweetId ? `${post.User.nickname} reposted it` : null}
         extra={id && <FollowButton post={post} />}
       >
         {post.RetweetId && post.Retweet

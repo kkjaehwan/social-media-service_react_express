@@ -48,7 +48,7 @@ const Contact = () => {
               </Paragraph>
               <Paragraph>
                 <Text>
-                  <PhoneOutlined /> +1 (647) 572-3933<br />
+                  <PhoneOutlined /> +1 (647) xxx-xxxx<br />
                   <MailOutlined /> kkjaehwan@gmail.com
                 </Text>
               </Paragraph>
@@ -80,7 +80,7 @@ const Contact = () => {
                 <Text>
                   Preferred Working Area : Toronto<br />
                   Working Available Area : GTA<br />
-                  Living Area : near by Kipling Station
+                  Living Area : Toronto
                 </Text>
               </Paragraph>
             </BasicWhiteDivWrapper>
