@@ -2,9 +2,9 @@ import React, { useCallback } from 'react';
 import Link from 'next/link';
 import { Menu, Input } from 'antd';
 import { useSelector } from 'react-redux';
-import { HomeFilled } from '@ant-design/icons';
+import { ContactsOutlined, HomeOutlined, UserOutlined } from '@ant-design/icons';
 import styled, { createGlobalStyle } from 'styled-components';
-import { Router } from 'next/router';
+import Router from 'next/router';
 import useInput from '../hooks/useInput';
 
 const Global = createGlobalStyle`
@@ -28,6 +28,9 @@ const AppTopLayout = () => {
   const [searchInput, onChangeSearchInput] = useInput('');
 
   const onSearch = useCallback(() => {
+    if (!searchInput || !searchInput.trim()) {
+      return alert('write what you want down.');
+    }
     Router.push(`/hashtag/${searchInput}`);
   }, [searchInput]);
 
@@ -35,12 +38,12 @@ const AppTopLayout = () => {
     <div>
       <Global />
       <Menu mode="horizontal">
-        <Menu.Item key="home" icon={<HomeFilled />}><Link href="/"><a>TossKnot</a></Link></Menu.Item>
-        {me ? <Menu.Item key="profile"><Link href="/profile"><a>Profile</a></Link></Menu.Item> : <></>}
-        <Menu.Item key="conract"><Link href="/contact"><a>Contact</a></Link></Menu.Item>
+        <Menu.Item key="home" icon={<HomeOutlined />}><Link href="/"><a>TossKnot</a></Link></Menu.Item>
+        {me ? <Menu.Item key="profile" icon={<UserOutlined />}><Link href="/profile"><a>Profile</a></Link></Menu.Item> : <></>}
+        <Menu.Item key="conract" icon={<ContactsOutlined />}><Link href="/contact"><a>Contact</a></Link></Menu.Item>
         <Menu.Item key="search">
           <SearchInput
-            enterButton
+            allowClear
             value={searchInput}
             onChange={onChangeSearchInput}
             onSearch={onSearch}
