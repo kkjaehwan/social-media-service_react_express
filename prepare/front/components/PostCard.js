@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { Card, Popover, Button, Avatar, List, Comment } from 'antd';
+import { Card, Popover, Button, Avatar, List, Comment, Badge } from 'antd';
 import {
   RetweetOutlined, HeartOutlined, MessageOutlined, EllipsisOutlined, HeartTwoTone,
 } from '@ant-design/icons';
@@ -71,10 +71,12 @@ const PostCard = ({ post }) => {
         cover={post.Images[0] && <PostImages images={post.Images} />}
         actions={[
           <RetweetOutlined key="retweet" onClick={onRetweet} />,
-          liked
-            ? <HeartTwoTone twoToneColor="#eb2f96" key="heart" onClick={onUnlike} />
-            : <HeartOutlined key="heart" onClick={onLike} />,
-          <MessageOutlined key="comment" onClick={onToggleComment} />,
+          <Badge color="#FF1493" size="small" count={post.Likers.length}>
+            {liked
+              ? <HeartTwoTone twoToneColor="#FF1493" key="heart" onClick={onUnlike} />
+              : <HeartOutlined key="heart" onClick={onLike} />}
+          </Badge>,
+          <Badge color="gray" size="small" count={post.Comments.length}><MessageOutlined key="comment" onClick={onToggleComment} /></Badge>,
           <Popover
             key="more"
             content={(
@@ -132,7 +134,6 @@ const PostCard = ({ post }) => {
         <div>
           {id && <CommentForm post={post} />}
           <List
-            header={`${post.Comments.length} comments`}
             itemLayout="horizontal"
             dataSource={post.Comments}
             renderItem={(item) => (
