@@ -52,7 +52,7 @@ const LoginForm = () => {
       </div>
       <ButtonWrapper>
         <Button type="primary" htmlType="submit" loading={logInLoading}>Login</Button>
-        <Link href="/signup"><a><Button>Sign-in</Button></a></Link>
+        <Link href="/signup"><a><Button>Sign-Up</Button></a></Link>
       </ButtonWrapper>
     </FormWrapper>
   );

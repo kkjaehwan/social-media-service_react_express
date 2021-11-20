@@ -73,7 +73,7 @@ const Signup = () => {
   return (
     <AppLayout>
       <Head>
-        <title>Sign In | TossKnot</title>
+        <title>Sign up | TossKnot</title>
       </Head>
       <Form onFinish={onSubmit}>
         <div>
@@ -108,7 +108,7 @@ const Signup = () => {
           {termError && <ErrorMessage>You have to agree to the terms and conditions.</ErrorMessage>}
         </div>
         <div style={{ marginTop: 10 }}>
-          <Button type="primary" htmlType="submit" loading={signUpLoading}>Sign In</Button>
+          <Button type="primary" htmlType="submit" loading={signUpLoading}>Sign Up</Button>
         </div>
       </Form>
     </AppLayout>
