@@ -4,10 +4,10 @@ import { Col, Row } from 'antd';
 import { useSelector } from 'react-redux';
 import { createGlobalStyle } from 'styled-components';
 
+import AppTopLayout from './AppTopLayout';
 import LoginForm from './LoginForm';
 import UserProfile from './UserProfile';
 import Copywriter from './Copywriter';
-import AppTopLayout from './AppTopLayout';
 
 const Global = createGlobalStyle`
   .ant-row{
