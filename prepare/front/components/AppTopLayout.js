@@ -31,7 +31,7 @@ const AppTopLayout = () => {
     if (!searchInput || !searchInput.trim()) {
       return alert('write what you want down.');
     }
-    Router.push(`/hashtag/${searchInput}`);
+    return Router.push(`/hashtag/${searchInput}`);
   }, [searchInput]);
 
   return (
