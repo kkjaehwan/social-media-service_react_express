@@ -27,7 +27,7 @@ const CommentForm = ({ post }) => {
 
   return (
     <Form onFinish={onSubmitComment}>
-      <Form.Item style={{ position: 'relative', margin: 0 }}>
+      <Form.Item style={{ position: 'relative', marginBottom: 25 }}>
         <Input.TextArea rows={4} value={commentText} onChange={onChangeCommentText} />
         <Button
           style={{ position: 'absolute', right: 0, bottom: -40, zIndex: 1 }}

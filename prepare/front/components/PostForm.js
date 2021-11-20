@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import { Button, Form, Input } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { CloudUploadOutlined, FormOutlined } from '@ant-design/icons';
 import { ADD_POST_REQUEST, UPLOAD_IMAGES_REQUEST, REMOVE_IMAGE } from '../reducers/post';
 import useInput from '../hooks/useInput';
 
@@ -62,11 +63,12 @@ const PostForm = () => {
         onChange={onChangeText}
         maxLength={140}
         placeholder="write your exprience down."
+        style={{ marginBottom: 5 }}
       />
       <div>
         <input type="file" name="image" multiple hidden ref={imageInput} onChange={onChangeImages} />
-        <Button onClick={onClickImageUpload}>upload image</Button>
-        <Button type="primary" style={{ float: 'right' }} htmlType="submit">submit</Button>
+        <Button onClick={onClickImageUpload}><CloudUploadOutlined /> Upload Image</Button>
+        <Button type="primary" style={{ float: 'right' }} htmlType="submit"><FormOutlined /> Submit</Button>
       </div>
       <div>
         {imagePaths.map((v, i) => (

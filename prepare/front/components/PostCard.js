@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { Card, Popover, Button, Avatar, List, Comment, Badge } from 'antd';
 import {
-  RetweetOutlined, HeartOutlined, MessageOutlined, EllipsisOutlined, HeartTwoTone,
+  RetweetOutlined, MessageOutlined, EllipsisOutlined, LikeTwoTone, LikeOutlined,
 } from '@ant-design/icons';
 import Link from 'next/link';
 import moment from 'moment';
@@ -73,8 +73,8 @@ const PostCard = ({ post }) => {
           <RetweetOutlined key="retweet" onClick={onRetweet} />,
           <Badge color="#FF1493" size="small" count={post.Likers.length}>
             {liked
-              ? <HeartTwoTone twoToneColor="#FF1493" key="heart" onClick={onUnlike} />
-              : <HeartOutlined key="heart" onClick={onLike} />}
+              ? <LikeTwoTone twoToneColor="#FF1493" key="heart" onClick={onUnlike} />
+              : <LikeOutlined key="heart" onClick={onLike} />}
           </Badge>,
           <Badge color="gray" size="small" count={post.Comments.length}><MessageOutlined key="comment" onClick={onToggleComment} /></Badge>,
           <Popover
