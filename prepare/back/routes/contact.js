@@ -27,7 +27,7 @@ router.post('/', async (req, res, next) => { // POST /contact
 
 router.delete('/', async (req, res, next) => { // DELETE /contact/10
   try {
-    console.log(req.query);
+    // console.log(req.query);
     const contact = await Contact.findOne({ where: { id: parseInt(req.query.id) } });
     if (!contact) {
       return res.status(403).send({ id: parseInt(req.query.id, 10), message: "The contact doesn't exist." });
