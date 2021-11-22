@@ -22,9 +22,9 @@ const UserProfile = () => {
   return (
     <Card
       actions={[
-        <div key="posts">Posts<br />{me.Posts.length}</div>,
-        <div key="followings">Followings<br />{me.Followings.length}</div>,
-        <div key="followings">Followers<br />{me.Followers.length}</div>,
+        <div key="posts"><Link href={`/user/${me.id}`}><a>Posts<br />{me.Posts.length}</a></Link></div>,
+        <div key="followings"><Link href="/profile"><a>Followings<br />{me.Followings.length}</a></Link></div>,
+        <div key="followings"><Link href="/profile"><a>Followers<br />{me.Followers.length}</a></Link></div>,
       ]}
     >
       <Card.Meta
