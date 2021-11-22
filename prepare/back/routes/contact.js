@@ -16,8 +16,12 @@ router.post('/', async (req, res, next) => { // POST /contact
     });
     const fullContact = await Contact.findOne({
       where: { id: contact.id },
+      attributes: ['content', 'nickname', 'email', 'id'],
     })
-    res.status(201).json(fullContact);
+    
+    const newObj = JSON.parse(JSON.stringify(fullContact));
+    newObj.key=fullContact.id;
+    res.status(201).json(newObj);
   } catch (error) {
     console.error(error);
     next(error);
