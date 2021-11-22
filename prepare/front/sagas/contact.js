@@ -54,7 +54,10 @@ function* addContact(action) {
 }
 
 function removeContactAPI(data) {
-  return axios.delete(`/contact/${data}`);
+  const params = {
+    params: data,
+  };
+  return axios.delete('/contact', params);
 }
 
 function* removeContact(action) {
@@ -69,7 +72,8 @@ function* removeContact(action) {
     console.error(err);
     yield put({
       type: REMOVE_CONTACT_FAILURE,
-      error: err.response.data,
+      error: err.response.data.message,
+      id: err.response.data.id,
     });
   }
 }

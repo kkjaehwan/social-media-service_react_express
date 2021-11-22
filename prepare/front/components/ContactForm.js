@@ -1,8 +1,9 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Typography, Form, Input, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { ContactsOutlined } from '@ant-design/icons';
 
+import styled from 'styled-components';
 import useInput from '../hooks/useInput';
 import { BasicGrayDivWrapper } from './styles';
 
@@ -10,12 +11,24 @@ import { ADD_CONTACT_REQUEST } from '../reducers/contact';
 
 const { Title } = Typography;
 
+const ErrorMessage = styled.div`
+  color: red;
+`;
+
 const ContactForm = () => {
   const dispatch = useDispatch();
 
   const [email, onChangeEmail, setEmail] = useInput('');
   const [nickname, onChangeNickname, setNickname] = useInput('');
   const [text, onChangeText, setText] = useInput('');
+  const [password, onChangePassword, setPassword] = useInput('');
+
+  const [passwordCheck, setPasswordCheck] = useState('');
+  const [passwordError, setPasswordError] = useState(false);
+  const onChangePasswordCheck = useCallback((e) => {
+    setPasswordCheck(e.target.value);
+    setPasswordError(e.target.value !== password);
+  }, [password]);
 
   const buttonStyle = useMemo(() => ({ marginTop: 10 }), []);
 
@@ -26,13 +39,15 @@ const ContactForm = () => {
       setText('');
       setEmail('');
       setNickname('');
+      setPassword('');
+      setPasswordCheck('');
     }
   }, [addContactDone]);
 
   // react form 라이브러리를 나중에 사용해보자
   const onSubmitForm = useCallback(() => {
     if (!text || !text.trim()) {
-      return alert('write what you want down.');
+      return alert('write your message');
     }
     // const formData2 = new FormData();
     // formData2.append('content', text);
@@ -40,10 +55,10 @@ const ContactForm = () => {
     // formData2.append('nickname', nickname);
     return dispatch({
       type: ADD_CONTACT_REQUEST,
-      data: { nickname, email, content: text },
+      data: { nickname, email, content: text, password },
       // data: formData2,
     });
-  }, [text, email, nickname]);
+  }, [text, email, nickname, password]);
 
   return (
     <>
@@ -54,6 +69,23 @@ const ContactForm = () => {
             <label htmlFor="user-email">Email</label>
             <br />
             <Input name="user-email" type="email" value={email} required onChange={onChangeEmail} />
+          </div>
+          <div>
+            <label htmlFor="user-password">Password</label>
+            <br />
+            <Input name="user-password" type="password" value={password} required onChange={onChangePassword} />
+          </div>
+          <div>
+            <label htmlFor="user-password-check">Confirm Password</label>
+            <br />
+            <Input
+              name="user-password-check"
+              type="password"
+              value={passwordCheck}
+              required
+              onChange={onChangePasswordCheck}
+            />
+            {passwordError && <ErrorMessage>The password doesn&apos;t match.</ErrorMessage>}
           </div>
 
           <div>
@@ -66,6 +98,7 @@ const ContactForm = () => {
             onChange={onChangeText}
             maxLength={140}
             placeholder="write your message."
+            style={buttonStyle}
           />
           <div style={buttonStyle}>
             <Button type="primary" htmlType="submit">Submit</Button>

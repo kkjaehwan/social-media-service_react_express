@@ -34,6 +34,7 @@ export const initialState = {
   removeContactLoading: false,
   removeContactDone: false,
   removeContactError: null,
+  removeContactErrorId: null,
 };
 
 export const ADD_CONTACT_REQUEST = 'ADD_CONTACT_REQUEST';
@@ -79,15 +80,18 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       draft.removeContactLoading = true;
       draft.removeContactDone = false;
       draft.removeContactError = null;
+      draft.removeContactErrorId = null;
       break;
     case REMOVE_CONTACT_SUCCESS:
       draft.removeContactLoading = false;
       draft.removeContactDone = true;
       draft.mainContacts = draft.mainContacts.filter((v) => v.id !== action.data.ContactId);
+      draft.removeContactErrorId = null;
       break;
     case REMOVE_CONTACT_FAILURE:
       draft.removeContactLoading = false;
       draft.removeContactError = action.error;
+      draft.removeContactErrorId = action.id;
       break;
     case LOAD_CONTACTS_REQUEST:
       draft.loadContactsLoading = true;

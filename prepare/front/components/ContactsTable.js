@@ -1,40 +1,36 @@
-import React, { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Table, Space, Button } from 'antd';
-import { REMOVE_CONTACT_REQUEST } from '../reducers/contact';
+import { Table, Space } from 'antd';
+import styled from 'styled-components';
+import ContactDeleteForm from './ContactDeleteForm';
 
 const { Column } = Table;
 
-const ContactsTable = ({ contacts }) => {
-  const dispatch = useDispatch();
+const ColumnWrapper = styled(Column)`
+  white-space: pre-line;
+  word-break: break-all;
+`;
 
-  const onRemoveContact = useCallback((id) => {
-    dispatch({
-      type: REMOVE_CONTACT_REQUEST,
-      data: id,
-    });
-  }, []);
-
-  return (
-    <>
-      <Table dataSource={contacts} scroll={{ x: 320 }}>
-        <Column title="Email" dataIndex="email" key="email" />
-        <Column title="Name" dataIndex="nickname" key="nickname" />
-        <Column title="Content" dataIndex="content" key="content" />
-        <Column
-          title="Action"
-          key="action"
-          render={(text, record) => (
-            <Space key={record.key} size="middle">
-              <Button type="danger" onClick={() => onRemoveContact(record.id)}>Delete</Button>
-            </Space>
-          )}
-        />
-      </Table>
-    </>
-  );
-};
+const ContactsTable = ({ contacts }) => (
+  <>
+    <Table dataSource={contacts} scroll={{ x: 320 }}>
+      <Column title="Email" dataIndex="email" key="email" />
+      <Column title="Name" dataIndex="nickname" key="nickname" />
+      <ColumnWrapper title="Content" dataIndex="content" key="content" />
+      <Column
+        title="Action"
+        key="action"
+        fixed="right"
+        width="100"
+        render={(text, record) => (
+          <Space key={record.key} size="middle">
+            <ContactDeleteForm contact={record} />
+          </Space>
+        )}
+      />
+    </Table>
+  </>
+);
 
 ContactsTable.propTypes = {
   contacts: PropTypes.arrayOf(
