@@ -8,6 +8,10 @@ import ImagesZoom from './ImagesZoom';
 const PostImages = ({ images }) => {
   const ImgStyle = styled.img`
     max-height:500px; 
+    max-width: 500px;
+    @media (max-width: 768px) {
+      max-width: 100%;
+    }
   `;
   const [showImagesZoom, setShowImagesZoom] = useState(false);
 
@@ -21,7 +25,7 @@ const PostImages = ({ images }) => {
   if (images.length === 1) {
     return (
       <>
-        <ImgStyle role="presentation" src={`${images[0].src}`} alt={images[0].src} onClick={onZoom} />
+        <div style={{ textAlign: 'center' }}> <ImgStyle role="presentation" src={`${images[0].src}`} alt={images[0].src} onClick={onZoom} /></div>
         {showImagesZoom && <ImagesZoom images={images} onClose={onClose} />}
       </>
     );
