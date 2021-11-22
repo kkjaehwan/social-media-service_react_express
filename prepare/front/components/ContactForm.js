@@ -32,7 +32,7 @@ const ContactForm = () => {
 
   const buttonStyle = useMemo(() => ({ marginTop: 10 }), []);
 
-  const { addContactDone } = useSelector((state) => state.contact);
+  const { addContactDone, addContactLoading } = useSelector((state) => state.contact);
 
   useEffect(() => {
     if (addContactDone) {
@@ -101,7 +101,7 @@ const ContactForm = () => {
             style={buttonStyle}
           />
           <div style={buttonStyle}>
-            <Button type="primary" htmlType="submit">Submit</Button>
+            <Button type="primary" loading={addContactLoading} htmlType="submit">Submit</Button>
           </div>
         </Form>
       </BasicGrayDivWrapper>
