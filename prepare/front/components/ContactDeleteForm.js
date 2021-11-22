@@ -13,7 +13,8 @@ const ContactDeleteForm = ({ contact }) => {
   const [password, onChangePassword] = useInput('');
   const { removeContactError,
     removeContactErrorId,
-    removeContactLoading } = useSelector((state) => state.contact);
+    removeContactLoading,
+    removeContactLoadingId } = useSelector((state) => state.contact);
 
   useEffect(() => {
     if (removeContactErrorId != null && contactId === removeContactErrorId) {
@@ -41,7 +42,7 @@ const ContactDeleteForm = ({ contact }) => {
           required
           style={{ marginBottom: 5 }}
         />
-        <Button type="primary" danger loading={removeContactLoading} htmlType="submit">Delete</Button>
+        <Button type="primary" danger loading={contactId === removeContactLoadingId && removeContactLoading} htmlType="submit">Delete</Button>
       </Form.Item>
     </Form>
   );

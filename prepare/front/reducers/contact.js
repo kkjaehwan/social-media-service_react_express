@@ -32,6 +32,7 @@ export const initialState = {
   addContactDone: false,
   addContactError: null,
   removeContactLoading: false,
+  removeContactLoadingId: null,
   removeContactDone: false,
   removeContactError: null,
   removeContactErrorId: null,
@@ -81,17 +82,20 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       draft.removeContactDone = false;
       draft.removeContactError = null;
       draft.removeContactErrorId = null;
+      draft.removeContactLoadingId = action.data.id;
       break;
     case REMOVE_CONTACT_SUCCESS:
       draft.removeContactLoading = false;
       draft.removeContactDone = true;
       draft.mainContacts = draft.mainContacts.filter((v) => v.id !== action.data.ContactId);
       draft.removeContactErrorId = null;
+      draft.removeContactLoadingId = null;
       break;
     case REMOVE_CONTACT_FAILURE:
       draft.removeContactLoading = false;
       draft.removeContactError = action.error;
       draft.removeContactErrorId = action.id;
+      draft.removeContactLoadingId = null;
       break;
     case LOAD_CONTACTS_REQUEST:
       draft.loadContactsLoading = true;

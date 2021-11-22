@@ -17,14 +17,14 @@ router.get('/', async (req, res, next) => { // GET /contacts
       order: [
         ['createdAt', 'DESC'],
       ],
-      attributes: ['content', 'nickname','email'],
+      attributes: ['content', 'nickname', 'email', 'id'],
     });
     // console.log(contacts);
     if (contacts) {
       const newObj = JSON.parse(JSON.stringify(contacts));
       newObj.map((unit) => {
-        unit.key=unit.id;
-      });      
+        unit.key = unit.id;
+      });
       // console.log(newObj);
       res.status(200).json(newObj);
     } else {
