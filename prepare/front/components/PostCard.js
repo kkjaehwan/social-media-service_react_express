@@ -72,12 +72,26 @@ const PostCard = ({ post }) => {
         cover={post.Images[0] && <PostImages images={post.Images} />}
         actions={[
           <RetweetOutlined key="retweet" onClick={onRetweet} />,
-          <Badge color="#FF1493" size="small" count={post.Likers.length}>
-            {liked
-              ? <LikeTwoTone twoToneColor="#FF1493" key="heart" onClick={onUnlike} />
-              : <LikeOutlined key="heart" onClick={onLike} />}
-          </Badge>,
-          <Badge color="gray" size="small" count={post.Comments.length}><MessageOutlined key="comment" onClick={onToggleComment} /></Badge>,
+          <div
+            role="button"
+            onClick={liked ? onUnlike : onLike}
+            onKeyDown={liked ? onUnlike : onLike}
+            tabIndex={0}
+          >
+            <Badge color="#FF1493" size="small" count={post.Likers.length}>
+              {liked
+                ? <LikeTwoTone twoToneColor="#FF1493" key="heart" />
+                : <LikeOutlined key="heart" />}
+            </Badge>
+          </div>,
+          <div
+            role="button"
+            onClick={onToggleComment}
+            onKeyDown={onToggleComment}
+            tabIndex={0}
+          >
+            <Badge color="gray" size="small" count={post.Comments.length}><MessageOutlined key="comment" /></Badge>
+          </div>,
           <Popover
             key="more"
             content={(

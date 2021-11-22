@@ -2,12 +2,16 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import { Button, Form, Input } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { CloudUploadOutlined, FormOutlined } from '@ant-design/icons';
+import { CloudUploadOutlined, DeleteOutlined, FormOutlined } from '@ant-design/icons';
 import { ADD_POST_REQUEST, UPLOAD_IMAGES_REQUEST, REMOVE_IMAGE } from '../reducers/post';
 import useInput from '../hooks/useInput';
 
 const PostForm = () => {
-  const { imagePaths, addPostDone } = useSelector((state) => state.post);
+  const { imagePaths,
+    addPostDone,
+    uploadImagesLoading,
+    addPostLoading } = useSelector((state) => state.post);
+
   const dispatch = useDispatch();
   const [text, onChangeText, setText] = useInput('');
 
@@ -67,15 +71,17 @@ const PostForm = () => {
       />
       <div>
         <input type="file" name="image" multiple hidden ref={imageInput} onChange={onChangeImages} />
-        <Button onClick={onClickImageUpload}><CloudUploadOutlined /> Upload Image</Button>
-        <Button type="primary" style={{ float: 'right' }} htmlType="submit"><FormOutlined /> Submit</Button>
+        <Button onClick={onClickImageUpload} loading={uploadImagesLoading}>
+          <CloudUploadOutlined /> Upload Image
+        </Button>
+        <Button icon={<FormOutlined />} type="primary" style={{ float: 'right' }} loading={addPostLoading} htmlType="submit">Submit</Button>
       </div>
       <div>
         {imagePaths.map((v, i) => (
           <div key={v} style={{ display: 'inline-block' }}>
             <img src={`${v.replace(/\/thumb\//, '/original/')}`} style={{ width: '200px' }} alt={v} />
             <div>
-              <Button onClick={onRemoveImage(i)}>delete</Button>
+              <Button icon={<DeleteOutlined />} onClick={onRemoveImage(i)}>delete</Button>
             </div>
           </div>
         ))}

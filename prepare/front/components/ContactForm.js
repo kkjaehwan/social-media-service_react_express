@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Typography, Form, Input, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { ContactsOutlined } from '@ant-design/icons';
+import { ContactsOutlined, FormOutlined } from '@ant-design/icons';
 
 import styled from 'styled-components';
 import useInput from '../hooks/useInput';
@@ -101,7 +101,14 @@ const ContactForm = () => {
             style={buttonStyle}
           />
           <div style={buttonStyle}>
-            <Button type="primary" loading={addContactLoading} htmlType="submit">Submit</Button>
+            <Button
+              type="primary"
+              loading={addContactLoading}
+              htmlType="submit"
+              icon={<FormOutlined />}
+            >Submit
+            </Button>
+
           </div>
         </Form>
       </BasicGrayDivWrapper>

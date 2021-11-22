@@ -3,6 +3,7 @@ import React, { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { FormOutlined } from '@ant-design/icons';
 import useInput from '../hooks/useInput';
 import { ADD_COMMENT_REQUEST } from '../reducers/post';
 
@@ -30,10 +31,12 @@ const CommentForm = ({ post }) => {
       <Form.Item style={{ position: 'relative', marginBottom: 25 }}>
         <Input.TextArea rows={2} value={commentText} onChange={onChangeCommentText} />
         <Button
+          size="small"
           style={{ position: 'absolute', right: 0, bottom: -40, zIndex: 1 }}
           type="primary"
           htmlType="submit"
           loading={addCommentLoading}
+          icon={<FormOutlined />}
         >Submit
         </Button>
       </Form.Item>

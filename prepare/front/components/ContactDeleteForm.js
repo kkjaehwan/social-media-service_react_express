@@ -3,7 +3,7 @@ import React, { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { LockFilled } from '@ant-design/icons';
+import { DeleteOutlined, LockFilled } from '@ant-design/icons';
 import useInput from '../hooks/useInput';
 import { REMOVE_CONTACT_REQUEST } from '../reducers/contact';
 
@@ -32,17 +32,27 @@ const ContactDeleteForm = ({ contact }) => {
   return (
     <Form onFinish={onRemoveContact}>
       <Form.Item>
-        <Input
-          placeholder="Password"
-          prefix={<LockFilled />}
-          name="user-password"
-          type="password"
-          value={password}
-          onChange={onChangePassword}
-          required
-          style={{ marginBottom: 5 }}
-        />
-        <Button type="primary" danger loading={contactId === removeContactLoadingId && removeContactLoading} htmlType="submit">Delete</Button>
+        <Input.Group compact>
+          <Input
+            size="small"
+            placeholder="Password"
+            prefix={<LockFilled />}
+            name="user-password"
+            type="password"
+            value={password}
+            onChange={onChangePassword}
+            required
+            style={{ width: '70%' }}
+          />
+          <Button
+            size="small"
+            type="primary"
+            danger
+            loading={contactId === removeContactLoadingId && removeContactLoading}
+            htmlType="submit"
+            icon={<DeleteOutlined />}
+          />
+        </Input.Group>
       </Form.Item>
     </Form>
   );
