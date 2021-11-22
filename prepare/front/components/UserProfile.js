@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, Avatar, Button } from 'antd';
 
@@ -27,7 +28,14 @@ const UserProfile = () => {
       ]}
     >
       <Card.Meta
-        avatar={<Avatar src={`https://joeschmoe.io/api/v1/${me.nickname[0]}`} style={{ width: 20, height: 20, verticalAlign: 'top', marginBottom: 10 }} />}
+        avatar={(
+          <Link href={`/user/${me.id}`} prefetch={false}>
+            <Avatar
+              src={`https://joeschmoe.io/api/v1/${me.nickname[0]}`}
+              style={{ width: 20, height: 20, marginBottom: 5 }}
+            />
+          </Link>
+        )}
         title={me.nickname}
       />
       <ButtonWrapper icon={<UserOutlined />} href="/profile">Profile</ButtonWrapper>
