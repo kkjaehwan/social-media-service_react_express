@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { Card, Popover, Button, Avatar, List, Comment, Badge, Tooltip } from 'antd';
 import {
-  RetweetOutlined, MessageOutlined, EllipsisOutlined, LikeTwoTone, LikeOutlined,
+  MessageOutlined,
+  EllipsisOutlined,
+  LikeTwoTone,
+  LikeOutlined,
+  ReloadOutlined,
+  FormOutlined,
+  DeleteOutlined,
 } from '@ant-design/icons';
 import Link from 'next/link';
 import moment from 'moment';
@@ -90,7 +96,6 @@ const PostCard = ({ post }) => {
       <Card
         cover={post.Images[0] && <PostImages images={post.Images} />}
         actions={[
-          <RetweetOutlined key="retweet" onClick={onRetweet} />,
           <div
             role="button"
             onClick={liked ? onUnlike : onLike}
@@ -101,6 +106,7 @@ const PostCard = ({ post }) => {
               {liked
                 ? <LikeTwoTone twoToneColor="#FF1493" key="heart" />
                 : <LikeOutlined key="heart" />}
+              <div>Like</div>
             </Badge>
           </div>,
           <div
@@ -110,24 +116,52 @@ const PostCard = ({ post }) => {
             tabIndex={0}
           >
             <Badge color="gray" size="small" count={post.Comments.length}><MessageOutlined key="comment" /></Badge>
+            <div>Comment</div>
           </div>,
-          <Popover
-            key="more"
-            content={(
-              <Button.Group>
-                {id && post.User.id === id
-                  ? (
-                    <>
-                      {!post.RetweetId && <Button onClick={onClickUpdate}>Modify</Button>}
-                      <Button type="danger" loading={removePostLoading} onClick={onRemovePost}>Delete</Button>
-                    </>
-                  )
-                  : <Button>Report</Button>}
-              </Button.Group>
-            )}
+          <div
+            role="button"
+            onClick={onRetweet}
+            onKeyDown={onRetweet}
+            tabIndex={0}
           >
-            <EllipsisOutlined />
-          </Popover>,
+            <ReloadOutlined key="retweet" />
+            <div>Repost</div>
+          </div>,
+          <div>
+            <Popover
+              key="more"
+              content={(
+                <Button.Group>
+                  {id && post.User.id === id
+                    ? (
+                      <>
+                        {
+                          !post.RetweetId && (
+                            <Button
+                              icon={<FormOutlined />}
+                              style={{ marginRight: 5 }}
+                              onClick={onClickUpdate}
+                            >Modify
+                            </Button>
+                          )
+                        }
+                        <Button
+                          icon={<DeleteOutlined />}
+                          type="danger"
+                          loading={removePostLoading}
+                          onClick={onRemovePost}
+                        >Delete
+                        </Button>
+                      </>
+                    )
+                    : <Button>Report</Button>}
+                </Button.Group>
+              )}
+            >
+              <EllipsisOutlined />
+            </Popover>
+            <div>Options</div>
+          </div>,
         ]}
         title={post.RetweetId ? `${post.User.nickname} reposted it` : null}
         extra={id && <FollowButton post={post} />}
