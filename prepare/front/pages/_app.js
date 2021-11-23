@@ -6,19 +6,15 @@ import 'antd/dist/antd.css';
 
 import wrapper from '../store/configureStore';
 
-const TossKnot = ({ Component }) => {
-  // console.log('node_env', process.env.NODE_ENV);
-  // console.log('backUrl', backUrl);
-  return (
-    <>
-      <Head>
-        <meta charSet="utf-8" />
-        <title>TossKnot</title>
-      </Head>
-      <Component />
-    </>
-  );
-};
+const TossKnot = ({ Component }) => (
+  <>
+    <Head>
+      <meta charSet="utf-8" />
+      <title>TossKnot</title>
+    </Head>
+    <Component />
+  </>
+);
 
 TossKnot.propTypes = {
   Component: PropTypes.elementType.isRequired,

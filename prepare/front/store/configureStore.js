@@ -6,7 +6,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';// 리덕스 액�
 import reducer from '../reducers';
 import rootSaga from '../sagas';
 
-const configureStore = (context) => {
+const configureStore = () => {
   // console.log(context);
   const sagaMiddleware = createSagaMiddleware();
   const middlewares = [sagaMiddleware];
