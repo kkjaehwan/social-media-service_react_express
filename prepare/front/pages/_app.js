@@ -5,7 +5,6 @@ import Head from 'next/head';
 import 'antd/dist/antd.css';
 
 import wrapper from '../store/configureStore';
-import { backUrl } from '../config/config';
 
 const TossKnot = ({ Component }) => {
   // console.log('node_env', process.env.NODE_ENV);
