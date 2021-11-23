@@ -8,8 +8,8 @@ import wrapper from '../store/configureStore';
 import { backUrl } from '../config/config';
 
 const TossKnot = ({ Component }) => {
-  console.log('node_env', process.env.NODE_ENV);
-  console.log('backUrl', backUrl);
+  // console.log('node_env', process.env.NODE_ENV);
+  // console.log('backUrl', backUrl);
   return (
     <>
       <Head>
