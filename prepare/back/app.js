@@ -81,7 +81,7 @@ app.use('/hashtag', hashtagRouter);
 if (process.env.NODE_ENV?.trim() === 'production') {
   console.log('node_env', process.env.NODE_ENV);
   console.log('process.env.NODE_ENV?.trim() === production', process.env.NODE_ENV?.trim() === 'production');
-  app.listen(80, () => {
+  app.listen(3065, () => {
     console.log('Production server is running!');
   });
 } else {
