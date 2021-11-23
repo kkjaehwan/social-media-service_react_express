@@ -1,1 +1,1 @@
-export const backUrl = process.env.NODE_ENV?.trim() === 'production' ? 'api.tossknot.com' : 'localhost:3065';
+export const backUrl = process.env.NODE_ENV?.trim() === 'production' ? 'https://api.tossknot.com' : 'http://localhost:3065';
