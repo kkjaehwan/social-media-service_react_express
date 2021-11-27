@@ -1,3 +1,4 @@
+const Dotenv = require('dotenv-webpack');
 // webpack 설정 변경
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
@@ -7,6 +8,7 @@ module.exports = withBundleAnalyzer({
   compress: true, // compressPlugin 제공
   webpack(config, { webpack }) {
     const prod = process.env.NODE_ENV === 'production';
+    config.plugins.push(new Dotenv({ silent: true }));
     return {
       ...config,
       mode: prod ? 'production' : 'development',

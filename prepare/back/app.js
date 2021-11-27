@@ -15,6 +15,7 @@ const postRouter = require('./routes/post');
 const postsRouter = require('./routes/posts');
 const userRouter = require('./routes/user');
 const hashtagRouter = require('./routes/hashtag');
+const googleRouter = require('./routes/google');
 const db = require('./models');
 const passportConfig = require('./passport');
 
@@ -40,7 +41,7 @@ if (process.env.NODE_ENV?.trim() === 'production') {
   app.use(morgan('dev'));
   //CORS 문제 해결
   app.use(cors({
-    origin: 'http://localhost:3060',
+    origin: ['http://localhost:3060'],
     credentials: true,
   }));
 }
@@ -74,6 +75,7 @@ app.use('/contact', contactRouter);
 app.use('/contacts', contactsRouter);
 app.use('/posts', postsRouter);
 app.use('/post', postRouter);
+app.use('/google', googleRouter);
 app.use('/user', userRouter);
 app.use('/hashtag', hashtagRouter);
 

@@ -150,7 +150,13 @@ function* loadMyInfo() {
   }
 }
 function logInAPI(data) {
-  return axios.post('/user/login', data);
+  let url = '';
+  if (data.tokenId != null) {
+    url = '/google/login';
+  } else {
+    url = '/user/login';
+  }
+  return axios.post(url, data);
 }
 
 function* logIn(action) {

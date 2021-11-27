@@ -91,7 +91,7 @@ router.post('/', isLoggedIn, upload.none(), async (req, res, next) => { // POST 
 
 // 한개: single, text : none, filed : 파일이 여러개
 router.post('/images', isLoggedIn, upload.array('image'), (req, res, next) => { // POST /post/images
-  console.log(req.files);
+  // console.log(req.files);
   // res.json(req.files.map((v) => v.filename));
   res.json(req.files.map((v) => v.location.replace(/\/original\//, '/thumb/'))); // S3에선 filename 대신 location을 씀.
 });

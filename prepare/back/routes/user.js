@@ -37,13 +37,13 @@ router.get('/', async (req, res, next) => { // GET /user
     }
   } catch (error) {
     console.error(error);
-   next(error);
+    next(error);
   }
 });
 
 router.get('/followers', isLoggedIn, async (req, res, next) => { // GET /user/followers
   try {
-    const user = await User.findOne({ where: { id: req.user.id }});
+    const user = await User.findOne({ where: { id: req.user.id } });
     if (!user) {
       res.status(403).send("The user doesn't exist.");
     }
@@ -60,7 +60,7 @@ router.get('/followers', isLoggedIn, async (req, res, next) => { // GET /user/fo
 
 router.get('/followings', isLoggedIn, async (req, res, next) => { // GET /user/followings
   try {
-    const user = await User.findOne({ where: { id: req.user.id }});
+    const user = await User.findOne({ where: { id: req.user.id } });
     if (!user) {
       res.status(403).send("The user doesn't exist.");
     }
@@ -112,11 +112,11 @@ router.get('/:id', async (req, res, next) => { // GET /user/3
 
 router.get('/:id/posts', async (req, res, next) => { // GET /user/1/posts
   try {
-    const user = await User.findOne({ where: { id: req.params.id }});
+    const user = await User.findOne({ where: { id: req.params.id } });
     if (user) {
       const where = {};
       if (parseInt(req.query.lastId, 10)) { // 초기 로딩이 아닐 때
-        where.id = { [Op.lt]: parseInt(req.query.lastId, 10)}
+        where.id = { [Op.lt]: parseInt(req.query.lastId, 10) }
       } // 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1
       const posts = await user.getPosts({
         where,
@@ -148,7 +148,7 @@ router.get('/:id/posts', async (req, res, next) => { // GET /user/1/posts
           }]
         }],
       });
-      console.log(posts);
+      // console.log(posts);
       res.status(200).json(posts);
     } else {
       res.status(403).send("The user doesn't exist.");
@@ -241,7 +241,7 @@ router.patch('/nickname', isLoggedIn, async (req, res, next) => {
 
 router.patch('/:userId/follow', isLoggedIn, async (req, res, next) => { // PATCH /user/1/follow
   try {
-    const user = await User.findOne({ where: { id: req.params.userId }});
+    const user = await User.findOne({ where: { id: req.params.userId } });
     if (!user) {
       res.status(403).send("The user doesn't exist.");
     }
@@ -255,7 +255,7 @@ router.patch('/:userId/follow', isLoggedIn, async (req, res, next) => { // PATCH
 
 router.delete('/:userId/follow', isLoggedIn, async (req, res, next) => { // DELETE /user/1/follow
   try {
-    const user = await User.findOne({ where: { id: req.params.userId }});
+    const user = await User.findOne({ where: { id: req.params.userId } });
     if (!user) {
       res.status(403).send("The user doesn't exist.");
     }
@@ -269,7 +269,7 @@ router.delete('/:userId/follow', isLoggedIn, async (req, res, next) => { // DELE
 
 router.delete('/follower/:userId', isLoggedIn, async (req, res, next) => { // DELETE /user/follower/2
   try {
-    const user = await User.findOne({ where: { id: req.params.userId }});
+    const user = await User.findOne({ where: { id: req.params.userId } });
     if (!user) {
       res.status(403).send("The user doesn't exist.");
     }
