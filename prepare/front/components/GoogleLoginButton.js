@@ -21,9 +21,13 @@ const GoogleLoginButton = () => {
     <div>
       <GoogleLogin
         clientId={clientId}
-        // buttonText=""
-        render={() => (
-          <Button icon={<LoginOutlined />}> Login with Google</Button>
+        // buttonText="Login with Google"
+        render={(renderProps) => (
+          <Button
+            onClick={renderProps.onClick}
+            icon={<LoginOutlined />}
+          > Login with Google
+          </Button>
         )}
         onSuccess={onSuccess}
         onFailure={onFailure}
