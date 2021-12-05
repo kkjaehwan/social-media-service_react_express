@@ -98,7 +98,7 @@ function* unlikePost(action) {
 }
 
 function loadPostsAPI(lastId) {
-  return axios.get('/posts?lastId=0');
+  return axios.get(`/posts?lastId=${lastId || 0}`);
 }
 
 function* loadPosts(action) {
